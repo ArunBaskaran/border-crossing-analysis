@@ -1,6 +1,9 @@
 from operator import itemgetter, attrgetter
+import sys
 
-f = open("../input/Border_Crossing_Entry_Data.csv", 'r')
+finput = sys.argv[1]
+f = open(finput, 'r')
+#print("Opened file")
 #f = open("sample.csv", 'r')
 f.readline()
 
@@ -63,7 +66,8 @@ for i in range(len(key_strings)-1, -1, -1):
 
 output_sorted = sorted(output, key=attrgetter('date', 'value', 'measure', 'border'))
 
-fout = open("../output/report.csv", 'w')
+foutput = sys.argv[2]
+fout = open(foutput, 'w')
 fout.write("Border,Date,Measure,Value,Average\n")
 for i in range(len(output_sorted)-1, -1, -1):
     fout.write(output_sorted[i].border + "," + output_sorted[i].date + "," + output_sorted[i].measure + "," + str(output_sorted[i].value) + "," + str(output_sorted[i].average) + "\n")
