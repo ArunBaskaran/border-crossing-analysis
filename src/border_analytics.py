@@ -70,7 +70,7 @@ foutput = sys.argv[2]
 fout = open(foutput, 'w')
 fout.write("Border,Date,Measure,Value,Average\n")
 for i in range(len(output_sorted)-1, -1, -1):
-    fout.write(output_sorted[i].border + "," + output_sorted[i].date + "," + output_sorted[i].measure + "," + str(output_sorted[i].value) + "," + str(output_sorted[i].average) + "\n")
+    fout.write(output_sorted[i].border + "," + output_sorted[i].date + " 12:00:00 AM," + output_sorted[i].measure + "," + str(output_sorted[i].value) + "," + str(output_sorted[i].average) + "\n")
 
     
 
