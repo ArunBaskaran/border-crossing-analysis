@@ -12,7 +12,10 @@ class Entry:
 # The following function checks if the date column in the input file has mm/dd/yy hh:mm:ss AM
 def validate_date(date):
     if (len(date.split(" ")) == 3 and len(date.split(" ")[0].split("/"))==3):
-        return date.split(" ")[0]
+        mm=date.split(" ")[0].split("/")[0]
+        dd=date.split(" ")[0].split("/")[1]
+        yyyy=date.split(" ")[0].split("/")[2]
+        return yyyy + "/" + dd + "/" + mm
     else:
         return -1
     
@@ -115,4 +118,5 @@ def write_to_file(filename, output_records_sorted):
     fout = open(filename, 'w')
     fout.write("Border,Date,Measure,Value,Average\n")
     for i in range(len(output_records_sorted)-1, -1, -1):
-        fout.write(output_records_sorted[i].border + "," + output_records_sorted[i].date + " 12:00:00 AM," + output_records_sorted[i].measure + "," + str(output_records_sorted[i].value) + "," + str(output_records_sorted[i].average) + "\n")
+        datecurr = output_records_sorted[i].date.split("/")[2] + "/" + output_records_sorted[i].date.split("/")[1] + "/" + output_records_sorted[i].date.split("/")[0] 
+        fout.write(output_records_sorted[i].border + "," + datecurr + " 12:00:00 AM," + output_records_sorted[i].measure + "," + str(output_records_sorted[i].value) + "," + str(output_records_sorted[i].average) + "\n")
