@@ -30,7 +30,7 @@ def validate_border(border):
         
 # The following function reads the input file line-by-line, stores the relevant columns in a dictionary and returns the dictionary
 def get_border_date_measure(filename):
-    master_dict = {}  # Dictionary that will store values for unique border-date-measure combos.
+    master_dict = {}  # Dictionary that will store values for unique {border-date-measure, values} combos.
     currentdate = str(-1)
     
     try:   #Safecheck 1 - To ensure that the file exists and was opened correctly

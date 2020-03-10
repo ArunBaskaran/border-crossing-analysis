@@ -1,0 +1,13 @@
+# Assumptions: The input data is available to be queried from a table called 'Border', with the column names corresponding to the names in the input file
+
+SELECT Border, cast(Date as datetime), Measure, SUM(Value) as Sum
+INTO Cleaned_Dataset
+FROM Border
+GROUP BY Date, Measure, Border
+ORDER BY DATE ASC, MEASURE ASC, BORDER ASC
+
+SELECT Border, Date, Measure, Sum, 
+AVG(Sum) OVER (PARTITION BY [BORDER, MEASURE], ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+ORDER BY DATE DESC, MEASURE DESC, BORDER DESC, VALUE DESC
+INTO Output_Dataset
+FROM Cleaned_Dataset
